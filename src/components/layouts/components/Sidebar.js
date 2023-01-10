@@ -1,4 +1,5 @@
 import {Box} from "@mui/material";
+import Image from "next/image";
 
 const Sidebar = () => {
 
@@ -9,7 +10,8 @@ const Sidebar = () => {
             paddingInline: '12px',
             paddingBlock: '21px'
         }}>
-            its sidebar
+            <Image alt={'site_logo'} src={`/icons/logo.png`} width="70" height="70" />
+
         </Box>
     );
 }
