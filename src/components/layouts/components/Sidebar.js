@@ -8,7 +8,9 @@ const Sidebar = () => {
             height: '100%',
             background: '#FAFAFA',
             paddingInline: '12px',
-            paddingBlock: '21px'
+            paddingBlock: '21px',
+            display: 'flex',
+            flexDirection: 'column'
         }}>
             <Link href={'/'}>
                 <Box
@@ -38,6 +40,48 @@ const Sidebar = () => {
                     }}
                     alt={'main_track'}
                     src="/icons/main-track-icon.svg"
+                />
+            </Link>
+            <Link href={'/favourites'}>
+                <Box
+                    component="img"
+                    sx={{
+                        width: '100%',
+                        transition: 'opacity .2s',
+                        '&:hover' : {
+                            opacity: .5
+                        }
+                    }}
+                    alt={'favourites'}
+                    src="/icons/heart-icon.svg"
+                />
+            </Link>
+            <Link href={'/guide'}>
+                <Box
+                    component="img"
+                    sx={{
+                        width: '100%',
+                        transition: 'opacity .2s',
+                        '&:hover' : {
+                            opacity: .5
+                        }
+                    }}
+                    alt={'guides'}
+                    src="/icons/book-icon.svg"
+                />
+            </Link>
+            <Link href={'/settings'} style={{marginTop: 'auto'}}>
+                <Box
+                    component="img"
+                    sx={{
+                        width: '100%',
+                        transition: 'opacity .2s',
+                        '&:hover' : {
+                            opacity: .5
+                        }
+                    }}
+                    alt={'main_track'}
+                    src="/icons/settings-icon.svg"
                 />
             </Link>
         </Box>

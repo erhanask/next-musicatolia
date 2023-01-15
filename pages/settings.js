@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import LayoutWithSidebar from "../src/components/layouts";
-import HomePage from "../src/components/home";
+import SettingsPage from "../src/components/settings";
 
 
-export default function Home() {
+export default function Settings() {
     return (
         <>
             <Head>
@@ -12,7 +12,8 @@ export default function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
-            <LayoutWithSidebar page={<HomePage/>}/>
+            <LayoutWithSidebar page={<SettingsPage/>}/>
         </>
     )
 }
+// TODO : This pages layout will be changed.
