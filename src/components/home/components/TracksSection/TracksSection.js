@@ -1,4 +1,4 @@
-import {Box, Typography} from "@mui/material";
+import {Box, Grid, List, ListItem, Typography} from "@mui/material";
 
 
 const TracksSection = () => {
@@ -32,7 +32,33 @@ const TracksSection = () => {
                     }}>
                     Those Are Flying
                 </Typography>
+                <Grid container sx={{marginTop:'20px'}}>
+                    <Grid item xs={6}>card 1</Grid>
+                    <Grid item xs={6}>card 1</Grid>
+                    <Grid item xs={6}>card 1</Grid>
+                    <Grid item xs={6}>card 1</Grid>
+                </Grid>
                 {/*TODO: I will list my favourite tracks in there.*/}
+            </Box>
+            <Box sx={{marginTop:'30px'}}>
+                <Typography
+                    variant={'p'}
+                    sx={{
+                        fontSize: '18px',
+                        fontWeight: '600',
+                        lineHeight: '20px',
+                        color: '#333333',
+                        marginBottom: '20px'
+                    }}>
+                    Those Are Running
+                </Typography>
+                <Grid container sx={{marginTop:'20px'}}>
+                    <Grid item xs={6}>card 1</Grid>
+                    <Grid item xs={6}>card 1</Grid>
+                    <Grid item xs={6}>card 1</Grid>
+                    <Grid item xs={6}>card 1</Grid>
+                </Grid>
+                {/*TODO: I will list my lovely tracks in there.*/}
             </Box>
         </Box>
     );
