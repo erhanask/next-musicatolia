@@ -1,7 +1,13 @@
 import {Box, Grid, List, ListItem, Typography} from "@mui/material";
+import {fetchHandler} from "../../../../helpers";
 
 
 const TracksSection = () => {
+
+    const albums = fetchHandler('https://api.spotify.com/v1/albums/3pJ9WVk6gzk3mgNjecQf35');
+
+    console.log(albums);
+
     return (
         <Box sx={{
             backgroundColor: 'white',
