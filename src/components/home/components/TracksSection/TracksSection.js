@@ -1,13 +1,21 @@
-import {Box, Grid, List, ListItem, Typography} from "@mui/material";
+import {Box, Grid, Typography} from "@mui/material";
 import {fetchHandler} from "../../../../helpers";
+import {useEffect, useState} from "react";
 
 
 const TracksSection = () => {
 
-    const albums = fetchHandler('https://api.spotify.com/v1/albums/3pJ9WVk6gzk3mgNjecQf35');
+    const [albums, setAlbums] = useState();
+    const getAlbums = async () => {
+        const response = await fetchHandler('https://api.spotify.com/v1/albums/3pJ9WVk6gzk3mgNjecQf35');
+        setAlbums(response);
+    }
+
+    useEffect(() => {
+        getAlbums();
+    }, [])
 
     console.log(albums);
-
     return (
         <Box sx={{
             backgroundColor: 'white',
@@ -40,6 +48,7 @@ const TracksSection = () => {
                 </Typography>
                 <Grid container sx={{marginTop:'20px'}}>
                     <Grid item xs={6}>card 1</Grid>
+                    {/*TODO: Grids will contain a component with a url prop and it will return card.*/}
                     <Grid item xs={6}>card 1</Grid>
                     <Grid item xs={6}>card 1</Grid>
                     <Grid item xs={6}>card 1</Grid>

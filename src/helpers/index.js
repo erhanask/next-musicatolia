@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetchHandler = async ({url}) => {
+export const fetchHandler = async (url) => {
 
     const client_id = process.env.spotifyClientId;
     const client_secret = process.env.spotifyClientSecret;
