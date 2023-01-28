@@ -7,7 +7,7 @@ export const fetchHandler = async (url) => {
     const auth_token = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
     const getAuth = async () => {
         try {
-            //make post request to SPOTIFY API for access token, sending relavent info
+            //making request to get access token
             const token_url = 'https://accounts.spotify.com/api/token';
 
             const response = await axios.post(token_url, 'grant_type=client_credentials', {
@@ -36,6 +36,7 @@ export const fetchHandler = async (url) => {
 
         return response.data;
     } catch (error) {
+        //on fail log the error.
         console.log(error);
     }
 }
