@@ -1,1 +1,1 @@
-export {AlbumCard as default} from './AlbumCard';
+export {SongsCard as default} from './AlbumCard';

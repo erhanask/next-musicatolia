@@ -1,5 +1,5 @@
 import {Box, Grid, Typography} from "@mui/material";
-import AlbumCard from "./components/AlbumCard";
+import SongsCard from "./components/AlbumCard";
 
 
 const TracksSection = () => {
@@ -36,14 +36,18 @@ const TracksSection = () => {
                 </Typography>
                 <Grid container sx={{marginTop:'20px'}}>
                     <Grid item xs={6}>
-                        <AlbumCard url={'https://api.spotify.com/v1/albums/3pJ9WVk6gzk3mgNjecQf35'} />
+                        <SongsCard url={'https://api.spotify.com/v1/albums/3pJ9WVk6gzk3mgNjecQf35'} />
                     </Grid>
-                    {/*TODO: Grids will contain a component with a url prop and it will return card.*/}
-                    <Grid item xs={6}>card 1</Grid>
-                    <Grid item xs={6}>card 1</Grid>
-                    <Grid item xs={6}>card 1</Grid>
+                    <Grid item xs={6}>
+                        <SongsCard url={'https://api.spotify.com/v1/playlists/4OIRpNAO3GtUiyIhEA7sAz'} />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <SongsCard url={'https://api.spotify.com/v1/albums/4IUeKh2mYOX2njthGA8STM'} />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <SongsCard url={'https://api.spotify.com/v1/albums/7nZjTEugHd3pBazK9mok3p'} />
+                    </Grid>
                 </Grid>
-                {/*TODO: I will list my favourite tracks in there.*/}
             </Box>
             <Box sx={{marginTop:'30px'}}>
                 <Typography
@@ -58,10 +62,18 @@ const TracksSection = () => {
                     Those Are Running
                 </Typography>
                 <Grid container sx={{marginTop:'20px'}}>
-                    <Grid item xs={6}>card 1</Grid>
-                    <Grid item xs={6}>card 1</Grid>
-                    <Grid item xs={6}>card 1</Grid>
-                    <Grid item xs={6}>card 1</Grid>
+                    <Grid item xs={6}>
+                        <SongsCard url={'https://api.spotify.com/v1/albums/3pJ9WVk6gzk3mgNjecQf35'} />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <SongsCard url={'https://api.spotify.com/v1/playlists/4OIRpNAO3GtUiyIhEA7sAz'} />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <SongsCard url={'https://api.spotify.com/v1/albums/4IUeKh2mYOX2njthGA8STM'} />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <SongsCard url={'https://api.spotify.com/v1/albums/7nZjTEugHd3pBazK9mok3p'} />
+                    </Grid>
                 </Grid>
                 {/*TODO: I will list my lovely tracks in there.*/}
             </Box>
