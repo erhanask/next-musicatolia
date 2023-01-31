@@ -1,7 +1,7 @@
 import {Box, Grid, Typography} from "@mui/material";
 import SongsCard from "./components/AlbumCard";
 
-
+//TODO : Firebase login olunacak.
 const TracksSection = () => {
 
         return (
