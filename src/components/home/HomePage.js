@@ -1,9 +1,6 @@
 import TracksSection from "./components/TracksSection";
 import EmbedSection from "./components/EmbedSection";
 import {Grid} from "@mui/material";
-import axios from "axios";
-import {useEffect} from "react";
-
 
 const HomePage = () => {
 
