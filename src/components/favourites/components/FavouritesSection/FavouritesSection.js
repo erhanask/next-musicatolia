@@ -14,18 +14,16 @@ const FavouritesSection = () => {
 
 
     useEffect(() => {
-        getPlaylists().then(res => setPlaylists(res.items));
+        getPlaylists().then(({items}) => setPlaylists(items));
     }, [])
 
     console.log(playlists);
 
     // Pushing list items into listItems array.
     if (playlists !== null) {
-        playlists.forEach((tracks,i) => {
+        playlists.forEach((tracks, i) => {
             listItems.push(
-                <Grid key={i} item xs={3}>
-                    <FavTrackCard playlist={tracks}/>
-                </Grid>
+                <FavTrackCard playlist={tracks}/>
             );
         })
     }
@@ -33,7 +31,7 @@ const FavouritesSection = () => {
     // If playlists not null foreach works.
     return playlists !== null ?
         (
-            <Grid container spacing={0} sx={{height: '100vh'}}>
+            <Grid container spacing={0} sx={{height: '100vh', flexDirection: 'column', overflow: 'auto'}}>
                 {listItems}
             </Grid>
         )

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {Card, CardActionArea, CardContent, CardMedia, CircularProgress, Grid, Typography} from "@mui/material";
+import {Box, Card, CardActionArea, CardContent, CircularProgress, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import {fetchHandler} from "../../../../../helpers";
 
@@ -23,32 +23,44 @@ const FavTrackCard = ({playlist}) => {
     if (tracks !== null) {
         tracks.forEach(({track}, i) => {
             listItems.push(
-                <Grid key={i} item xs={12}>
-                    <Link href={""}>
-                        <Card>
-                            <CardActionArea>
-                                <CardContent sx={{padding: '5px 0 0', marginBottom: '0'}}>
-                                    <Typography gutterBottom sx={{
-                                        fontWeight: '600',
-                                        fontSize: '16px',
-                                        lineHeight: '110.5%',
-                                        color: '#333333'
-                                    }} component="b">
-                                        {track?.name}
-                                    </Typography>
-                                    <Typography gutterBottom sx={{
-                                        fontWeight: '400',
-                                        fontSize: '12px',
-                                        lineHeight: '110.5%',
-                                        color: '#4F4F4F'
-                                    }} component="p">
-                                        {track.artists === undefined ? '-' : track?.artists[0]?.name}
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </Link>
-                </Grid>
+                <Link href={track?.external_urls?.spotify}
+                      style={{width: '320px', height: 'calc(100vh / 10)', margin: '10px', position: 'relative'}}>
+                    <Box component={'div'} sx={{
+                        width: '100%',
+                        height: '100%',
+                        position: 'absolute',
+                        backgroundImage: `url(${track?.album?.images[1]?.url})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        opacity: '.85'
+                    }}></Box>
+                    <Card sx={{width: '100%', height: '100%', padding: '5px'}}>
+                        <CardActionArea sx={{
+                            background: 'rgba(0,0,0,.5)',
+                            borderRadius: '5px !important',
+                            textAlign: 'center'
+                        }}>
+                            <CardContent sx={{padding: '5px 0 0', marginBottom: '0'}}>
+                                <Typography gutterBottom sx={{
+                                    fontWeight: '600',
+                                    fontSize: '16px',
+                                    lineHeight: '110.5%',
+                                    color: '#FFF'
+                                }} component="b">
+                                    {track?.name}
+                                </Typography>
+                                <Typography gutterBottom sx={{
+                                    fontWeight: '400',
+                                    fontSize: '12px',
+                                    lineHeight: '110.5%',
+                                    color: '#FFF'
+                                }} component="p">
+                                    {track.artists === undefined ? '-' : track?.artists[0]?.name}
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                    </Card>
+                </Link>
             );
         })
     }
@@ -56,7 +68,8 @@ const FavTrackCard = ({playlist}) => {
 
     console.log(tracks);
 
-    return tracks !== null ? listItems : (<CircularProgress color={"inherit"} sx={{display: 'flex', marginInline: 'auto', marginBlock: '10px'}}/>);
+    return tracks !== null ? listItems : (
+        <CircularProgress color={"inherit"} sx={{display: 'flex', marginInline: 'auto', marginBlock: '10px'}}/>);
 }
 
 
