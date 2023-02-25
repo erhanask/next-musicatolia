@@ -48,15 +48,16 @@ const GuidePage = () => {
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
-                        <Typography variant={'h4'} sx={{width: '33%', flexShrink: 0}}>
+                        <Typography variant={'p'} sx={{
+                            width: '33%', flexShrink: 0}}>
                             {item.header}
                         </Typography>
-                        <Typography variant={'h4'} sx={{color: 'text.secondary'}}>
+                        <Typography variant={'p'} sx={{color: 'text.secondary'}}>
                             {item.summary}
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Typography variant={'h5'}>
+                        <Typography variant={'p'}>
                             {item.content}
                         </Typography>
                     </AccordionDetails>

@@ -31,7 +31,7 @@ const FavouritesSection = () => {
     // If playlists not null foreach works.
     return playlists !== null ?
         (
-            <Grid container spacing={0} sx={{height: '100vh', flexDirection: 'column', overflow: 'auto'}}>
+            <Grid container spacing={0} sx={{height: '100vh', flexDirection: {xs: 'row',md:'column'}, overflow: 'auto'}}>
                 {listItems}
             </Grid>
         )

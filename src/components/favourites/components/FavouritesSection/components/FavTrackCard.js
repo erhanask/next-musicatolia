@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {Box, Card, CardActionArea, CardContent, CircularProgress, Typography} from "@mui/material";
+import {Box, Card, CardActionArea, CardContent, CircularProgress, Typography, Link as MuiLink} from "@mui/material";
 import {useEffect, useState} from "react";
 import {fetchHandler} from "../../../../../helpers";
 
@@ -23,8 +23,13 @@ const FavTrackCard = ({playlist}) => {
     if (tracks !== null) {
         tracks.forEach(({track}, i) => {
             listItems.push(
-                <Link href={track?.external_urls?.spotify}
-                      style={{width: '320px', height: 'calc(100vh / 10)', margin: '10px', position: 'relative'}}>
+                <MuiLink sx={{
+                    width: {xs: '100%', md: '320px'},
+                    height: 'calc(100vh / 10)',
+                    margin: '10px',
+                    position: 'relative'
+                }} component={Link}
+                         href={track?.external_urls?.spotify}>
                     <Box component={'div'} sx={{
                         width: '100%',
                         height: '100%',
@@ -60,7 +65,7 @@ const FavTrackCard = ({playlist}) => {
                             </CardContent>
                         </CardActionArea>
                     </Card>
-                </Link>
+                </MuiLink>
             );
         })
     }

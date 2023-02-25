@@ -9,22 +9,23 @@ const TracksSection = () => {
             backgroundColor: 'white',
             height: '100vh',
             borderRight: '1px solid rgba(0, 0, 0, 0.1);',
-            padding: '18px 24px'
+            padding: {xs: '10px 12px' ,md: '18px 24px'},
+            marginBottom: {xs: '30px',md:0}
         }}>
             <Typography
                 variant={'h4'}
                 sx={{
-                    fontSize: '32px',
+                    fontSize: {xs:'18px',md:'32px'},
                     fontWeight: '700',
-                    lineHeight: '35px',
+                    lineHeight: {xs: '16px',md:'35px'},
                     color: '#333333',
-                    marginBottom: '34px'
+                    marginBottom: {xs: '16px',md:'34px'}
                 }}>
                 Discover Featured Playlists/Tracks
             </Typography>
             <Box sx={{
-                height: 'calc( 100vh - 175px)',
-                overflowY: 'scroll'
+                height: {xs: '100%',md:'calc( 100vh - 175px)'},
+                overflowY: 'scroll',
             }}>
                 <Box>
                     <Typography
@@ -38,17 +39,17 @@ const TracksSection = () => {
                         }}>
                         Those Are Flying
                     </Typography>
-                    <Grid container sx={{marginTop:'20px'}}>
-                        <Grid item xs={6}>
+                    <Grid container sx={{marginTop: {xs: '5px' ,md:'20px'}}}>
+                        <Grid item md={6} xs={12}>
                             <SongsCard url={'https://api.spotify.com/v1/albums/3pJ9WVk6gzk3mgNjecQf35'} />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item md={6} xs={12}>
                             <SongsCard url={'https://api.spotify.com/v1/playlists/4OIRpNAO3GtUiyIhEA7sAz'} />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item md={6} xs={12}>
                             <SongsCard url={'https://api.spotify.com/v1/albums/4IUeKh2mYOX2njthGA8STM'} />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item md={6} xs={12}>
                             <SongsCard url={'https://api.spotify.com/v1/albums/7nZjTEugHd3pBazK9mok3p'} />
                         </Grid>
                     </Grid>
@@ -66,16 +67,16 @@ const TracksSection = () => {
                         Those Are Running
                     </Typography>
                     <Grid container sx={{marginTop:'20px'}}>
-                        <Grid item xs={6}>
+                        <Grid item md={6} xs={12}>
                             <SongsCard url={'https://api.spotify.com/v1/albums/3pJ9WVk6gzk3mgNjecQf35'} />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item md={6} xs={12}>
                             <SongsCard url={'https://api.spotify.com/v1/playlists/4OIRpNAO3GtUiyIhEA7sAz'} />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item md={6} xs={12}>
                             <SongsCard url={'https://api.spotify.com/v1/albums/4IUeKh2mYOX2njthGA8STM'} />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item md={6} xs={12}>
                             <SongsCard url={'https://api.spotify.com/v1/albums/7nZjTEugHd3pBazK9mok3p'} />
                         </Grid>
                     </Grid>
