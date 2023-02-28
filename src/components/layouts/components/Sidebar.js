@@ -4,7 +4,7 @@ import {useState} from "react";
 
 const Sidebar = () => {
 
-    const [navOpen, setNavOpen] = useState(false);
+    const [navOpen, setNavOpen] = useState(true);
 
 
 
