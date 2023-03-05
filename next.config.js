@@ -10,6 +10,8 @@ const nextConfig = {
     nextPublicFirebaseMessagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
     nextPublicFirebaseAppId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
     nextPublicFirebaseMeasurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+    adminEmail: process.env.ADMIN_EMAIL,
+    adminPassword: process.env.ADMIN_PASSWORD
   }
 }
 
