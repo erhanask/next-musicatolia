@@ -1,17 +1,13 @@
 import {useAuthContext} from "../../context/AuthContext";
 import {useRouter} from "next/navigation";
-import {useEffect} from "react";
-import {Input, InputLabel, TextField, Typography} from "@mui/material";
+import {Box, Grid, Input, InputLabel, TextField, Typography} from "@mui/material";
+import Link from "next/link";
 
 
 const SettingsPage = () => {
 
-    const { user } = useAuthContext()
+    const {user,setUser} = useAuthContext();
     const router = useRouter()
-
-    useEffect(() => {
-        // if (user == null) router.push("/")
-    }, [user])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,8 +17,15 @@ const SettingsPage = () => {
             'password': e.target[1].value
         }
 
-        // TODO : AuthContext will be changed to a global context
 
+        if (data.email === process.env.adminEmail && data.password === process.env.adminPassword) {
+            localStorage.setItem('auth_key', btoa(data.email+data.password));
+            setUser(data);
+        }
+
+        console.log(process.env.adminEmail);
+
+        console.log(btoa(data.email+'hashed'+data.password+data.email));
     }
 
 
@@ -44,6 +47,7 @@ const SettingsPage = () => {
                 </Typography>
                 <Input
                     name={`email`}
+                    type={`text`}
                     placeholder={`Email`}
                     required
                     sx={{
@@ -52,6 +56,7 @@ const SettingsPage = () => {
                 />
                 <Input
                     name={`password`}
+                    type={`password`}
                     placeholder={`Password`}
                     required
                     sx={{
@@ -68,7 +73,24 @@ const SettingsPage = () => {
                 }} type={`submit`} value={`Login`}/>
             </form>
         </>
-    ) : 'yihuuu';
+    ) : (
+        <>
+            <Grid container spacing={0}>
+                <Grid item xs={6}>
+                    <Link style={{display:`flex`,flexDirection: 'column',alignItems: 'center'}} href={`settings/spotify`}>
+                        <img style={{width: '20%'}} src={`icons/spotify-setting-icon.png`} alt={`spotify-setting-icon`} />
+                        Spotify Settings
+                    </Link>
+                </Grid>
+                <Grid item xs={6}>
+                    <Link style={{display:`flex`,flexDirection: 'column',alignItems: 'center'}} href={`settings/guide`}>
+                        <img style={{width: '20%'}} src={`icons/guide-setting-icon.png`} alt={`spotify-setting-icon`} />
+                        Guide Settings
+                    </Link>
+                </Grid>
+            </Grid>
+        </>
+    );
 }
 
 export default SettingsPage;
