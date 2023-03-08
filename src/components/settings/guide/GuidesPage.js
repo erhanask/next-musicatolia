@@ -29,34 +29,33 @@ const GuidesPage = () => {
     }
 
     return user == null ? <AuthForm/> :
-        <>
+        <Box sx={{padding:'15px'}}>
+            <Typography
+                variant={`h3`}
+            >
+                Enter Guides Contents
+            </Typography>
             <form style={{
                 display: 'flex',
-                width: '30%',
-                justifyContent: 'center',
-                alignIItems: 'center',
+                width: '100%',
                 height: '100%',
                 flexDirection: 'column',
-                marginInline: 'auto'
+                flexWrap: 'wrap',
+                marginInline: 'auto',
             }} onSubmit={handleSubmit}>
-                <Typography
-                    variant={`p`}
-                >
-                    Enter Guides Contents
-                </Typography>
                 <Input
-                    name={`email`}
-                    type={`text`}
-                    placeholder={`Email`}
+                    name={`question`}
+                    type={`textarea`}
+                    placeholder={`Question`}
                     required
                     sx={{
                         marginBlock: '15px'
                     }}
                 />
                 <Input
-                    name={`password`}
-                    type={`password`}
-                    placeholder={`Password`}
+                    name={`answer`}
+                    type={`textarea`}
+                    placeholder={`Answer`}
                     required
                     sx={{
                         marginBlock: '15px'
@@ -69,9 +68,12 @@ const GuidesPage = () => {
                     backgroundColor: '#27ae60',
                     color: 'white',
                     marginTop: '10px'
-                }} type={`submit`} value={`Login`}/>
+                }} type={`submit`} value={`Add`}/>
             </form>
-        </>;
+            <Box>
+
+            </Box>
+        </Box>;
 }
 
 export default GuidesPage;
