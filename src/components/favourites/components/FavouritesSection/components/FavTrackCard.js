@@ -17,7 +17,6 @@ const FavTrackCard = ({playlist}) => {
         getTracks().then(res => setTracks(res.items));
     }, [])
 
-    console.log(tracks);
 
     // Pushing list items into listItems array.
     if (tracks !== null) {
@@ -71,7 +70,6 @@ const FavTrackCard = ({playlist}) => {
     }
 
 
-    console.log(tracks);
 
     return tracks !== null ? listItems : (
         <CircularProgress color={"inherit"} sx={{display: 'flex', marginInline: 'auto', marginBlock: '10px'}}/>);

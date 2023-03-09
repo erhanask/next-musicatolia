@@ -17,7 +17,6 @@ const FavouritesSection = () => {
         getPlaylists().then(({items}) => setPlaylists(items));
     }, [])
 
-    console.log(playlists);
 
     // Pushing list items into listItems array.
     if (playlists !== null) {

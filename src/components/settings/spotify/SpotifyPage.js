@@ -23,9 +23,6 @@ const SpotifyPage = () => {
             setUser(data);
         }
 
-        console.log(process.env.adminEmail);
-
-        console.log(btoa(data.email+'hashed'+data.password+data.email));
     }
 
 

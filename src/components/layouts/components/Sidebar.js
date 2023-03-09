@@ -8,7 +8,6 @@ const Sidebar = () => {
 
 
 
-    console.log(navOpen);
     return !navOpen ? (
         <Box sx={{
             height: '8%',
