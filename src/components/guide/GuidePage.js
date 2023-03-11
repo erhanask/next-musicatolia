@@ -33,28 +33,12 @@ const GuidePage = () => {
 
     const guideItems = {
         items: {
-            contents: [
-                {
-                    header: 'What is the purpose of the application?',
-                    summary: 'beep boop',
-                    content: 'The purpose of the application is to provide a platform for users to discover new music and artists. The application includes my favourite tracks and advices.'
-                },
-                {
-                    header: 'beep boop',
-                    summary: 'beep boop',
-                    content: 'beep boop'
-                },
-                {
-                    header: 'boop beep',
-                    summary: 'beep boop',
-                    content: 'boop beep'
-                },
-            ]
+            contents: guides
         }
     }
 
     const listGuideItems = () => {
-        return guideItems.items.contents.map((item, i) => {
+        return guideItems.items.contents.map(({data}, i) => {
             return (
                 <Accordion key={i} sx={{
                     marginBlock: '20px',
@@ -69,15 +53,15 @@ const GuidePage = () => {
                     >
                         <Typography variant={'p'} sx={{
                             width: '33%', flexShrink: 0}}>
-                            {item.header}
+                            {data.header}
                         </Typography>
                         <Typography variant={'p'} sx={{color: 'text.secondary'}}>
-                            {item.summary}
+                            {data.summary}
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography variant={'p'}>
-                            {item.content}
+                            {data.content}
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
