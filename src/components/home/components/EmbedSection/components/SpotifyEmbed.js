@@ -16,7 +16,7 @@ const SpotifyEmbed = () => {
                 }}>
                 Listen Bests Of This Genre
             </Typography>
-            <iframe style={{borderRadius: '12px',height:'85vh',width:'100%'}} src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M" frameBorder="0"
+            <iframe style={{borderRadius: '12px',height:'85vh',width:'100%'}} frameBorder="0"
                     src="https://open.spotify.com/embed/playlist/4OIRpNAO3GtUiyIhEA7sAz?utm_source=generator&theme=0"
                     width="100%" height="100%"
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>

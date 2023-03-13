@@ -11,7 +11,7 @@ const GuidePage = () => {
 
 
     useEffect(() => {
-        const getLog = async () => {
+        const getGuides = async () => {
             const querySnapshot = await getDocs(collection(db, "guides"));
             querySnapshot.forEach((doc) => {
                 let guideList = [...guides];
@@ -20,7 +20,7 @@ const GuidePage = () => {
             });
         };
 
-        getLog();
+        getGuides();
 
     },[]);
 
