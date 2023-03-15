@@ -11,28 +11,19 @@ const FavouritesSection = () => {
     const [playlists, setPlaylists] = useState(null);
     const listItems = [];
 
-    // TODO : this function will be edited according to fav_user_url from firestore db.
-    // useEffect(() => {
-    //     const getGuides = async () => {
-    //         const querySnapshot = await getDocs(collection(db, "guides"));
-    //         querySnapshot.forEach((doc) => {
-    //             let guideList = [...guides];
-    //             guideList = [...guideList, { id: doc.id, data: doc.data() }];
-    //             setGuides(guideList);
-    //         });
-    //     };
-    //
-    //     getGuides();
-    //
-    // },[]);
-
-    const getPlaylists = async () => {
-        return await fetchHandler("https://api.spotify.com/v1/users/x11yvx5zawwdoa7x0k7yl6oqj/playlists");
+    const getPlaylists = async (user_url) => {
+        return await fetchHandler(user_url).then(({items}) => setPlaylists(items));
     }
 
 
     useEffect(() => {
-        getPlaylists().then(({items}) => setPlaylists(items));
+        const getProfile = async () => {
+            const querySnapshot = await getDocs(collection(db, "spotify"));
+            getPlaylists(querySnapshot?.docs[0]?.data()?.api_urls?.fav_user_url);
+        };
+
+        getProfile();
+
     }, [])
 
 
@@ -40,7 +31,7 @@ const FavouritesSection = () => {
     if (playlists !== null) {
         playlists.forEach((tracks, i) => {
             listItems.push(
-                <FavTrackCard playlist={tracks}/>
+                <FavTrackCard key={i} playlist={tracks}/>
             );
         })
     }
@@ -48,7 +39,8 @@ const FavouritesSection = () => {
     // If playlists not null foreach works.
     return playlists !== null ?
         (
-            <Grid container spacing={0} sx={{height: '100vh', flexDirection: {xs: 'row',md:'column'}, overflow: 'auto'}}>
+            <Grid container spacing={0}
+                  sx={{height: '100vh', flexDirection: {xs: 'row', md: 'column'}, overflow: 'auto'}}>
                 {listItems}
             </Grid>
         )

@@ -13,7 +13,5 @@ const FavouritesPage = () => {
         </Grid>
     );
 }
-// TODO : My user ID.
-// x11yvx5zawwdoa7x0k7yl6oqj
 
 export default FavouritesPage;

@@ -22,13 +22,17 @@ const FavTrackCard = ({playlist}) => {
     if (tracks !== null) {
         tracks.forEach(({track}, i) => {
             listItems.push(
-                <MuiLink sx={{
-                    width: {xs: '100%', md: '320px'},
-                    height: 'calc(100vh / 10)',
-                    margin: '10px',
-                    position: 'relative'
-                }} component={Link}
-                         href={track?.external_urls?.spotify}>
+                <MuiLink
+                    sx={{
+                        width: {xs: '100%', md: '320px'},
+                        height: 'calc(100vh / 10)',
+                        margin: '10px',
+                        position: 'relative'
+                    }}
+                    component={Link}
+                    href={track?.external_urls?.spotify}
+                    key={i}
+                >
                     <Box component={'div'} sx={{
                         width: '100%',
                         height: '100%',
@@ -68,7 +72,6 @@ const FavTrackCard = ({playlist}) => {
             );
         })
     }
-
 
 
     return tracks !== null ? listItems : (

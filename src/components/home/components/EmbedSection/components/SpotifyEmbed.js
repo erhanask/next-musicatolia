@@ -2,6 +2,8 @@ import {Box, Typography} from "@mui/material";
 
 const SpotifyEmbed = () => {
 
+    // TODO: NEXT THING IS FETCHING SPOTIFY EMBED CODE FROM DB
+
     return (
         <>
             <Typography
