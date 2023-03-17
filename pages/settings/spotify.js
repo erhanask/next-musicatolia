@@ -16,4 +16,3 @@ export default function Guide() {
         </>
     )
 }
-// TODO : This pages layout will be changed.

@@ -16,4 +16,3 @@ export default function Settings() {
         </>
     )
 }
-// TODO : This pages layout will be changed.

@@ -1,7 +1,6 @@
 import {Box, Grid, Typography} from "@mui/material";
 import SongsCard from "./components/AlbumCard";
 
-//TODO : Firebase login olunacak.
 const TracksSection = () => {
 
         return (
@@ -80,7 +79,6 @@ const TracksSection = () => {
                             <SongsCard url={'https://api.spotify.com/v1/albums/7nZjTEugHd3pBazK9mok3p'} />
                         </Grid>
                     </Grid>
-                    {/*TODO: I will list my lovely tracks in there.*/}
                 </Box>
             </Box>
         </Box>

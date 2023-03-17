@@ -138,6 +138,5 @@ const Sidebar = () => {
         </Box>
     );
 }
-//TODO : logo will be placed here.
 
 export default Sidebar;
