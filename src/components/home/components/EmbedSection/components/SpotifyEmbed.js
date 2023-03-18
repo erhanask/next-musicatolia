@@ -1,16 +1,16 @@
-import {Box, Typography} from "@mui/material";
+import {Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import {collection, getDocs} from "firebase/firestore";
 import {db} from "../../../../../config";
 
 const SpotifyEmbed = () => {
-    // TODO: NEXT THING IS FETCHING SPOTIFY EMBED CODE FROM DB
-    const [embed,getEmbed] = useState();
+
+    const [embed,setEmbed] = useState();
 
     useEffect(() => {
         const getEmbedUrl = async () => {
             const querySnapshot = await getDocs(collection(db, "spotify"));
-            getEmbed(querySnapshot?.docs[0]?.data()?.api_urls?.embed_url);
+            setEmbed(querySnapshot?.docs[0]?.data()?.api_urls?.embed_url);
         };
 
         getEmbedUrl();

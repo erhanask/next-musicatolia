@@ -1,7 +1,9 @@
-import {Box, Grid, Typography} from "@mui/material";
-import SongsCard from "./components/AlbumCard";
+import {Box, Typography} from "@mui/material";
+import CollectionCards from "./components/CollectionCards";
 
 const TracksSection = () => {
+
+
 
         return (
         <Box sx={{
@@ -38,20 +40,7 @@ const TracksSection = () => {
                         }}>
                         Those Are Flying
                     </Typography>
-                    <Grid container sx={{marginTop: {xs: '5px' ,md:'20px'}}}>
-                        <Grid item md={6} xs={12}>
-                            <SongsCard url={'https://api.spotify.com/v1/albums/3pJ9WVk6gzk3mgNjecQf35'} />
-                        </Grid>
-                        <Grid item md={6} xs={12}>
-                            <SongsCard url={'https://api.spotify.com/v1/playlists/4OIRpNAO3GtUiyIhEA7sAz'} />
-                        </Grid>
-                        <Grid item md={6} xs={12}>
-                            <SongsCard url={'https://api.spotify.com/v1/albums/4IUeKh2mYOX2njthGA8STM'} />
-                        </Grid>
-                        <Grid item md={6} xs={12}>
-                            <SongsCard url={'https://api.spotify.com/v1/albums/7nZjTEugHd3pBazK9mok3p'} />
-                        </Grid>
-                    </Grid>
+                    <CollectionCards type={'flyings'} />
                 </Box>
                 <Box sx={{marginTop:'30px'}}>
                     <Typography
@@ -65,20 +54,7 @@ const TracksSection = () => {
                         }}>
                         Those Are Running
                     </Typography>
-                    <Grid container sx={{marginTop:'20px'}}>
-                        <Grid item md={6} xs={12}>
-                            <SongsCard url={'https://api.spotify.com/v1/albums/3pJ9WVk6gzk3mgNjecQf35'} />
-                        </Grid>
-                        <Grid item md={6} xs={12}>
-                            <SongsCard url={'https://api.spotify.com/v1/playlists/4OIRpNAO3GtUiyIhEA7sAz'} />
-                        </Grid>
-                        <Grid item md={6} xs={12}>
-                            <SongsCard url={'https://api.spotify.com/v1/albums/4IUeKh2mYOX2njthGA8STM'} />
-                        </Grid>
-                        <Grid item md={6} xs={12}>
-                            <SongsCard url={'https://api.spotify.com/v1/albums/7nZjTEugHd3pBazK9mok3p'} />
-                        </Grid>
-                    </Grid>
+                    <CollectionCards type={'runnings'} />
                 </Box>
             </Box>
         </Box>
