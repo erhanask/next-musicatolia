@@ -3,6 +3,7 @@ import {useRouter} from "next/navigation";
 import {Box, Grid, Input, InputLabel, TextField, Typography} from "@mui/material";
 import Link from "next/link";
 import AuthForm from "../components/AuthForm";
+import GuidePage from "../../guide";
 
 
 const GuidesPage = () => {
@@ -30,6 +31,9 @@ const GuidesPage = () => {
         <Box sx={{padding:'15px'}}>
             <Typography
                 variant={`h3`}
+                sx={{
+                    paddingInline: '10px'
+                }}
             >
                 Enter Guides Contents
             </Typography>
@@ -40,6 +44,7 @@ const GuidesPage = () => {
                 flexDirection: 'column',
                 flexWrap: 'wrap',
                 marginInline: 'auto',
+                paddingInline: '10px'
             }} onSubmit={handleSubmit}>
                 <Input
                     name={`question`}
@@ -68,8 +73,8 @@ const GuidesPage = () => {
                     marginTop: '10px'
                 }} type={`submit`} value={`Add`}/>
             </form>
-            <Box>
-
+            <Box marginTop={'1rem'}>
+                <GuidePage />
             </Box>
         </Box>;
 }
