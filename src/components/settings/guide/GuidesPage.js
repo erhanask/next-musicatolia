@@ -1,9 +1,9 @@
 import {useAuthContext} from "../../../context/AuthContext";
-import {useRouter} from "next/navigation";
-import {Box, Grid, Input, InputLabel, TextField, Typography} from "@mui/material";
-import Link from "next/link";
+import {Box, Input, Typography} from "@mui/material";
+import { doc, setDoc } from "firebase/firestore";
 import AuthForm from "../components/AuthForm";
 import GuidePage from "../../guide";
+import {db} from "../../../config";
 
 
 const GuidesPage = () => {
@@ -20,8 +20,8 @@ const GuidesPage = () => {
 
 
         if (data.email === process.env.adminEmail && data.password === process.env.adminPassword) {
-            localStorage.setItem('auth_key', btoa(data.email+data.password));
-            setUser(data);
+            // const cityRef = doc(db, 'cities', 'BJ');
+            // setDoc(cityRef, { capital: true }, { merge: true });
         }
 
 
@@ -47,18 +47,27 @@ const GuidesPage = () => {
                 paddingInline: '10px'
             }} onSubmit={handleSubmit}>
                 <Input
-                    name={`question`}
+                    name={`header`}
                     type={`textarea`}
-                    placeholder={`Question`}
+                    placeholder={`Header`}
                     required
                     sx={{
                         marginBlock: '15px'
                     }}
                 />
                 <Input
-                    name={`answer`}
+                    name={`content`}
                     type={`textarea`}
-                    placeholder={`Answer`}
+                    placeholder={`Content`}
+                    required
+                    sx={{
+                        marginBlock: '15px'
+                    }}
+                />
+                <Input
+                    name={`summary`}
+                    type={`textarea`}
+                    placeholder={`Summary`}
                     required
                     sx={{
                         marginBlock: '15px'
@@ -71,7 +80,7 @@ const GuidesPage = () => {
                     backgroundColor: '#27ae60',
                     color: 'white',
                     marginTop: '10px'
-                }} type={`submit`} value={`Add`}/>
+                }} type={`submit`} value={`Add - Update`}/>
             </form>
             <Box marginTop={'1rem'}>
                 <GuidePage />
