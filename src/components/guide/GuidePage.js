@@ -12,9 +12,9 @@ const GuidePage = () => {
 
     useEffect(() => {
         const getGuides = async () => {
+            let guideList = [...guides];
             const querySnapshot = await getDocs(collection(db, "guides"));
             querySnapshot.forEach((doc) => {
-                let guideList = [...guides];
                 guideList = [...guideList, { id: doc.id, data: doc.data() }];
                 setGuides(guideList);
             });

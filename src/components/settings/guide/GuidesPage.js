@@ -1,27 +1,37 @@
 import {useAuthContext} from "../../../context/AuthContext";
 import {Box, Input, Typography} from "@mui/material";
-import { doc, setDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import AuthForm from "../components/AuthForm";
 import GuidePage from "../../guide";
 import {db} from "../../../config";
+import {useEffect, useState} from "react";
 
 
 const GuidesPage = () => {
 
-    const {user,setUser} = useAuthContext();
+    const {user} = useAuthContext();
+    const [guideUpdate,setGuideUpdate] = useState(false);
+    const [guidePage, setGuidePage] = useState(undefined);
 
-    const handleSubmit = (e) => {
+    useEffect(() => {
+        setGuidePage(<GuidePage/>);
+    },[guideUpdate]);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const data = {
-            'email': e.target[0].value,
-            'password': e.target[1].value
+            'header': e.target[0].value,
+            'content': e.target[1].value,
+            'summary' : e.target[2].value
         }
 
 
-        if (data.email === process.env.adminEmail && data.password === process.env.adminPassword) {
-            // const cityRef = doc(db, 'cities', 'BJ');
-            // setDoc(cityRef, { capital: true }, { merge: true });
+        if (data.header !== null && data.content !== null && data.summary !== null) {
+            // Add a new document with a generated id.
+            const docRef = await addDoc(collection(db, "guides"), data);
+            console.log("Document written with ID: ", docRef.id);
+            setGuideUpdate(true);
         }
 
 
@@ -83,7 +93,7 @@ const GuidesPage = () => {
                 }} type={`submit`} value={`Add - Update`}/>
             </form>
             <Box marginTop={'1rem'}>
-                <GuidePage />
+                {guidePage}
             </Box>
         </Box>;
 }
