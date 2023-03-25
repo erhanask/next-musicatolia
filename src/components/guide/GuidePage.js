@@ -1,29 +1,32 @@
 import {Accordion, AccordionDetails, AccordionSummary, Box, Typography} from "@mui/material";
-import {ExpandMoreSharp} from "@mui/icons-material";
+import {Close, ExpandMoreSharp} from "@mui/icons-material";
 import {useEffect, useState} from "react";
-import { db} from "../../config";
-import { collection, getDocs } from "firebase/firestore";
+import {db} from "../../config";
+import {collection, getDocs} from "firebase/firestore";
 
-const GuidePage = () => {
+const GuidePage = ({included, updated}) => {
 
     const [expanded, setExpanded] = useState(false);
     const [guides, setGuides] = useState([]);
+    const [docId, setDocId] = useState(undefined);
+    const [open, setOpen] = useState(false);
 
+    const openDeleteModal = (id) => {
+        setDocId(id);
+        return console.log('guide id =' + id);
+    }
+    const getGuides = async () => {
+        let guideList = [];
+        const querySnapshot = await getDocs(collection(db, "guides"));
+        querySnapshot.forEach((doc) => {
+            guideList = [...guideList, {id: doc.id, data: doc.data()}];
+            setGuides(guideList);
+        });
+    };
 
     useEffect(() => {
-        const getGuides = async () => {
-            let guideList = [...guides];
-            const querySnapshot = await getDocs(collection(db, "guides"));
-            querySnapshot.forEach((doc) => {
-                guideList = [...guideList, { id: doc.id, data: doc.data() }];
-                setGuides(guideList);
-            });
-        };
-
         getGuides();
-
-    },[]);
-
+    }, [updated]);
 
 
     const handleChange =
@@ -38,9 +41,10 @@ const GuidePage = () => {
     }
 
     const listGuideItems = () => {
-        return guideItems.items.contents.map(({data}, i) => {
+        return guideItems.items.contents.map(({id, data}, i) => {
             return (
-                <Accordion key={i} sx={{
+                <>
+                <Accordion key={id} sx={{
                     marginBlock: '20px',
                     border: '1px solid #E0E0E0',
                     boxShadow: 'none',
@@ -52,7 +56,17 @@ const GuidePage = () => {
                         id="panel1bh-header"
                     >
                         <Typography variant={'p'} sx={{
-                            width: '33%', flexShrink: 0}}>
+                            width: '33%',
+                            flexShrink: 0,
+                            display: 'flex',
+                            alignItems: 'center',
+                        }}>
+                            <Close sx={{
+                                color: 'red',
+                                cursor: 'not-allowed'
+                            }}
+                                   onClick={() => openDeleteModal(id)}
+                            />
                             {data.header}
                         </Typography>
                         <Typography variant={'p'} sx={{color: 'text.secondary'}}>
@@ -65,6 +79,8 @@ const GuidePage = () => {
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
+                    <DeleteModal open={{condition: open,setOpen:setOpen}} selectedId={docId} />
+                </>
             )
         })
     };

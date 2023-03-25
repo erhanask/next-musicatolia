@@ -10,12 +10,7 @@ import {useEffect, useState} from "react";
 const GuidesPage = () => {
 
     const {user} = useAuthContext();
-    const [guideUpdate,setGuideUpdate] = useState(false);
-    const [guidePage, setGuidePage] = useState(undefined);
-
-    useEffect(() => {
-        setGuidePage(<GuidePage/>);
-    },[guideUpdate]);
+    const [isUpdated, setIsUpdated] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,7 +26,7 @@ const GuidesPage = () => {
             // Add a new document with a generated id.
             const docRef = await addDoc(collection(db, "guides"), data);
             console.log("Document written with ID: ", docRef.id);
-            setGuideUpdate(true);
+            setIsUpdated(true);
         }
 
 
@@ -93,7 +88,7 @@ const GuidesPage = () => {
                 }} type={`submit`} value={`Add - Update`}/>
             </form>
             <Box marginTop={'1rem'}>
-                {guidePage}
+                <GuidePage included={true} updated={isUpdated}/>
             </Box>
         </Box>;
 }
