@@ -1,95 +1,242 @@
 import {useAuthContext} from "../../../context/AuthContext";
-import {useRouter} from "next/navigation";
-import {Box, Grid, Input, InputLabel, TextField, Typography} from "@mui/material";
-import Link from "next/link";
+import AuthForm from "../components/AuthForm";
+import {Box, Input, Typography} from "@mui/material";
 
-
+// TODO : spotify setting forms will be listed in here.
 const SpotifyPage = () => {
 
-    const {user,setUser} = useAuthContext();
-    const router = useRouter()
+    const {user} = useAuthContext();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const formStyle = {
+        display: 'flex',
+        width: '100%',
+        height: '100%',
+        flexDirection: 'column',
+        flexFlow: 'wrap',
+        marginInline: 'auto',
+        paddingInline: '10px',
+        marginBlock: '15px'
+    };
 
-        const data = {
-            'email': e.target[0].value,
-            'password': e.target[1].value
-        }
-
-
-        if (data.email === process.env.adminEmail && data.password === process.env.adminPassword) {
-            localStorage.setItem('auth_key', btoa(data.email+data.password));
-            setUser(data);
-        }
-
+    const handleSubmit = async () => {
+        await console.log('aaa');
     }
 
-
-    return user == null ? (
-        <>
-            <form style={{
-                display: 'flex',
-                width: '30%',
-                justifyContent: 'center',
-                alignIItems: 'center',
-                height: '100%',
-                flexDirection: 'column',
-                marginInline: 'auto'
-            }} onSubmit={handleSubmit}>
-                <Typography
-                    variant={`p`}
-                >
-                    Enter Spotify ID's
-                </Typography>
-                <Input
-                    name={`email`}
-                    type={`text`}
-                    placeholder={`Email`}
-                    required
-                    sx={{
-                        marginBlock: '15px'
-                    }}
-                />
-                <Input
-                    name={`password`}
-                    type={`password`}
-                    placeholder={`Password`}
-                    required
-                    sx={{
-                        marginBlock: '15px'
-                    }}
-                />
-                <input style={{
-                    width: '25%',
-                    border: '1px solid #aeaeae',
-                    lineHeight: '25px',
-                    backgroundColor: '#27ae60',
-                    color: 'white',
-                    marginTop: '10px'
-                }} type={`submit`} value={`Login`}/>
-            </form>
-        </>
-    ) : (
-        <>
-            <Grid container spacing={0} sx={{
-                marginTop: '30%'
-            }}>
-                <Grid item xs={6}>
-                    <Link style={{display:`flex`,flexDirection: 'column',alignItems: 'center'}} href={`settings/spotify`}>
-                        <img style={{width: '20%'}} src={`icons/spotify-setting-icon.png`} alt={`spotify-setting-icon`} />
-                        Spotify Settings
-                    </Link>
-                </Grid>
-                <Grid item xs={6}>
-                    <Link style={{display:`flex`,flexDirection: 'column',alignItems: 'center'}} href={`settings/guide`}>
-                        <img style={{width: '20%'}} src={`icons/guide-setting-icon.png`} alt={`spotify-setting-icon`} />
-                        Guide Settings
-                    </Link>
-                </Grid>
-            </Grid>
-        </>
-    );
+    return user == null ? <AuthForm/> :
+        (
+            <>
+                <Box sx={{padding: '15px'}}>
+                    <Typography
+                        variant={`h4`}
+                        sx={{
+                            paddingInline: '10px'
+                        }}
+                    >
+                        Enter Flyings Contents
+                    </Typography>
+                    <form style={formStyle} onSubmit={handleSubmit}>
+                        <Box sx={{
+                            width: '50%'
+                        }}>
+                            <Input
+                                name={`header`}
+                                type={`text`}
+                                placeholder={`Header`}
+                                required
+                                sx={{
+                                    width: '90%'
+                                }}
+                            />
+                        </Box>
+                        <Box sx={{
+                            width: '50%'
+                        }}>
+                            <Input
+                                name={`header`}
+                                type={`text`}
+                                placeholder={`Header`}
+                                required
+                                sx={{
+                                    width: '90%'
+                                }}
+                            />
+                        </Box>
+                        <Box sx={{
+                            width: '50%'
+                        }}>
+                            <Input
+                                name={`header`}
+                                type={`text`}
+                                placeholder={`Header`}
+                                required
+                                sx={{
+                                    width: '90%'
+                                }}
+                            />
+                        </Box>
+                        <Box sx={{
+                            width: '50%'
+                        }}>
+                            <Input
+                                name={`header`}
+                                type={`text`}
+                                placeholder={`Header`}
+                                required
+                                sx={{
+                                    width: '90%'
+                                }}
+                            />
+                        </Box>
+                        <input style={{
+                            width: '25%',
+                            border: '1px solid #aeaeae',
+                            lineHeight: '25px',
+                            backgroundColor: '#27ae60',
+                            color: 'white',
+                            marginTop: '10px'
+                        }} type={`submit`} value={`Edit`}/>
+                    </form>
+                </Box>
+                <Box sx={{padding: '15px'}}>
+                    <Typography
+                        variant={`h4`}
+                        sx={{
+                            paddingInline: '10px'
+                        }}
+                    >
+                        Enter Runnings Contents
+                    </Typography>
+                    <form style={formStyle} onSubmit={handleSubmit}>
+                        <Box sx={{
+                            width: '50%'
+                        }}>
+                            <Input
+                                name={`header`}
+                                type={`text`}
+                                placeholder={`Header`}
+                                required
+                                sx={{
+                                    width: '90%'
+                                }}
+                            />
+                        </Box>
+                        <Box sx={{
+                            width: '50%'
+                        }}>
+                            <Input
+                                name={`header`}
+                                type={`text`}
+                                placeholder={`Header`}
+                                required
+                                sx={{
+                                    width: '90%'
+                                }}
+                            />
+                        </Box>
+                        <Box sx={{
+                            width: '50%'
+                        }}>
+                            <Input
+                                name={`header`}
+                                type={`text`}
+                                placeholder={`Header`}
+                                required
+                                sx={{
+                                    width: '90%'
+                                }}
+                            />
+                        </Box>
+                        <Box sx={{
+                            width: '50%'
+                        }}>
+                            <Input
+                                name={`header`}
+                                type={`text`}
+                                placeholder={`Header`}
+                                required
+                                sx={{
+                                    width: '90%'
+                                }}
+                            />
+                        </Box>
+                        <input style={{
+                            width: '25%',
+                            border: '1px solid #aeaeae',
+                            lineHeight: '25px',
+                            backgroundColor: '#27ae60',
+                            color: 'white',
+                            marginTop: '10px'
+                        }} type={`submit`} value={`Edit`}/>
+                    </form>
+                </Box>
+                <Box sx={{padding: '15px'}}>
+                    <Typography
+                        variant={`h4`}
+                        sx={{
+                            paddingInline: '10px'
+                        }}
+                    >
+                        Enter Embed Code Link
+                    </Typography>
+                    <form style={formStyle} onSubmit={handleSubmit}>
+                        <Box sx={{
+                            width: '100%'
+                        }}>
+                            <Input
+                                name={`header`}
+                                type={`text`}
+                                placeholder={`Header`}
+                                required
+                                sx={{
+                                    width: '95%'
+                                }}
+                            />
+                        </Box>
+                        <input style={{
+                            width: '25%',
+                            border: '1px solid #aeaeae',
+                            lineHeight: '25px',
+                            backgroundColor: '#27ae60',
+                            color: 'white',
+                            marginTop: '10px'
+                        }} type={`submit`} value={`Edit`}/>
+                    </form>
+                </Box>
+                <Box sx={{padding: '15px'}}>
+                    <Typography
+                        variant={`h4`}
+                        sx={{
+                            paddingInline: '10px'
+                        }}
+                    >
+                        Enter Favs Profile Link
+                    </Typography>
+                    <form style={formStyle} onSubmit={handleSubmit}>
+                        <Box sx={{
+                            width: '100%'
+                        }}>
+                            <Input
+                                name={`header`}
+                                type={`text`}
+                                placeholder={`Header`}
+                                required
+                                sx={{
+                                    width: '95%'
+                                }}
+                            />
+                        </Box>
+                        <input style={{
+                            width: '25%',
+                            border: '1px solid #aeaeae',
+                            lineHeight: '25px',
+                            backgroundColor: '#27ae60',
+                            color: 'white',
+                            marginTop: '10px'
+                        }} type={`submit`} value={`Edit`}/>
+                    </form>
+                </Box>
+            </>
+        );
 }
 
 export default SpotifyPage;
