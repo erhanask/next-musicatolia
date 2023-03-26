@@ -3,8 +3,9 @@ import {Close, ExpandMoreSharp} from "@mui/icons-material";
 import {useEffect, useState} from "react";
 import {db} from "../../config";
 import {collection, getDocs} from "firebase/firestore";
+import DeleteModal from "./components/DeleteModal";
 
-const GuidePage = ({included, updated}) => {
+const GuidePage = ({included, updated, setUpdate}) => {
 
     const [expanded, setExpanded] = useState(false);
     const [guides, setGuides] = useState([]);
@@ -13,6 +14,7 @@ const GuidePage = ({included, updated}) => {
 
     const openDeleteModal = (id) => {
         setDocId(id);
+        setOpen(true);
         return console.log('guide id =' + id);
     }
     const getGuides = async () => {
@@ -26,6 +28,7 @@ const GuidePage = ({included, updated}) => {
 
     useEffect(() => {
         getGuides();
+        setUpdate(false);
     }, [updated]);
 
 
@@ -43,7 +46,6 @@ const GuidePage = ({included, updated}) => {
     const listGuideItems = () => {
         return guideItems.items.contents.map(({id, data}, i) => {
             return (
-                <>
                 <Accordion key={id} sx={{
                     marginBlock: '20px',
                     border: '1px solid #E0E0E0',
@@ -79,18 +81,21 @@ const GuidePage = ({included, updated}) => {
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
-                    <DeleteModal open={{condition: open,setOpen:setOpen}} selectedId={docId} />
-                </>
             )
         })
     };
 
-    return (<Box sx={{
-        width: '100%',
-        paddingInline: '10px',
-    }}>
-        {listGuideItems()}
-    </Box>);
+    return (
+        <>
+            <Box sx={{
+                width: '100%',
+                paddingInline: '10px',
+            }}>
+                {listGuideItems()}
+            </Box>
+            <DeleteModal open={{condition: open, setOpen: setOpen}} selectedId={docId} setUpdate={setUpdate}/>
+        </>
+    );
 }
 
 export default GuidePage;

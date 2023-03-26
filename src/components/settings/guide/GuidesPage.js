@@ -25,7 +25,6 @@ const GuidesPage = () => {
         if (data.header !== null && data.content !== null && data.summary !== null) {
             // Add a new document with a generated id.
             const docRef = await addDoc(collection(db, "guides"), data);
-            console.log("Document written with ID: ", docRef.id);
             setIsUpdated(true);
         }
 
@@ -85,10 +84,10 @@ const GuidesPage = () => {
                     backgroundColor: '#27ae60',
                     color: 'white',
                     marginTop: '10px'
-                }} type={`submit`} value={`Add - Update`}/>
+                }} type={`submit`} value={`Add`}/>
             </form>
             <Box marginTop={'1rem'}>
-                <GuidePage included={true} updated={isUpdated}/>
+                <GuidePage included={true} updated={isUpdated} setUpdate={setIsUpdated}/>
             </Box>
         </Box>;
 }
