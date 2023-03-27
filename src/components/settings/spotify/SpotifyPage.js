@@ -1,12 +1,15 @@
 import {useAuthContext} from "../../../context/AuthContext";
 import AuthForm from "../components/AuthForm";
-import {Box, Input, Typography} from "@mui/material";
+import {Box, CircularProgress, Input, Typography} from "@mui/material";
+import {useEffect, useState} from "react";
+import {collection, getDocs} from "firebase/firestore";
+import {db} from "../../../config";
 
 // TODO : spotify setting forms will be listed in here.
 const SpotifyPage = () => {
 
     const {user} = useAuthContext();
-
+    const [inputValues, setInputValues] = useState();
     const formStyle = {
         display: 'flex',
         width: '100%',
@@ -20,8 +23,18 @@ const SpotifyPage = () => {
 
     const handleSubmit = async () => {
         await console.log('aaa');
-    }
+    };
 
+    const getSpotifyValues = async () => {
+        const querySnapshot = await getDocs(collection(db, "spotify"));
+        return querySnapshot?.docs[0]?.data();
+    };
+
+    useEffect(() => {
+        getSpotifyValues().then(r => setInputValues(r.api_urls));
+    }, []);
+
+    if (inputValues !== undefined) {
     return user == null ? <AuthForm/> :
         (
             <>
@@ -187,6 +200,7 @@ const SpotifyPage = () => {
                                 type={`text`}
                                 placeholder={`Header`}
                                 required
+                                value={inputValues.embed_url}
                                 sx={{
                                     width: '95%'
                                 }}
@@ -237,6 +251,9 @@ const SpotifyPage = () => {
                 </Box>
             </>
         );
+    } else {
+        return <CircularProgress color={"inherit"} sx={{display: 'flex', marginInline: 'auto', marginBlock: '10px'}}/>
+    }
 }
 
 export default SpotifyPage;

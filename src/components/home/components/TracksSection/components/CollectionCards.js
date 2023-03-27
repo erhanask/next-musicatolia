@@ -18,7 +18,6 @@ const CollectionCards = ({type}) => {
             } else {
                 setSongs(queryData?.runnings_urls);
             }
-
         };
 
         getSongs();
