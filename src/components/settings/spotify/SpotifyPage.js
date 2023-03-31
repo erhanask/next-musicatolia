@@ -30,6 +30,30 @@ const SpotifyPage = () => {
         return querySnapshot?.docs[0]?.data();
     };
 
+    const listSpecials = (urls, type) => {
+        const listItems = [];
+        urls.forEach((url, i) => {
+            listItems.push(
+                <Box sx={{
+                    width: '50%'
+                }}>
+                    <Input
+                        key={i}
+                        name={`type${i}`}
+                        type={`text`}
+                        placeholder={type}
+                        value={url}
+                        required
+                        sx={{
+                            width: '90%'
+                        }}
+                    />
+                </Box>
+            );
+        });
+        return listItems;
+    }
+
     useEffect(() => {
         getSpotifyValues().then(r => setInputValues(r.api_urls));
     }, []);
@@ -48,58 +72,7 @@ const SpotifyPage = () => {
                         Enter Flyings Contents
                     </Typography>
                     <form style={formStyle} onSubmit={handleSubmit}>
-                        <Box sx={{
-                            width: '50%'
-                        }}>
-                            <Input
-                                name={`header`}
-                                type={`text`}
-                                placeholder={`Header`}
-                                required
-                                sx={{
-                                    width: '90%'
-                                }}
-                            />
-                        </Box>
-                        <Box sx={{
-                            width: '50%'
-                        }}>
-                            <Input
-                                name={`header`}
-                                type={`text`}
-                                placeholder={`Header`}
-                                required
-                                sx={{
-                                    width: '90%'
-                                }}
-                            />
-                        </Box>
-                        <Box sx={{
-                            width: '50%'
-                        }}>
-                            <Input
-                                name={`header`}
-                                type={`text`}
-                                placeholder={`Header`}
-                                required
-                                sx={{
-                                    width: '90%'
-                                }}
-                            />
-                        </Box>
-                        <Box sx={{
-                            width: '50%'
-                        }}>
-                            <Input
-                                name={`header`}
-                                type={`text`}
-                                placeholder={`Header`}
-                                required
-                                sx={{
-                                    width: '90%'
-                                }}
-                            />
-                        </Box>
+                        {listSpecials(inputValues.flyings_urls, 'Flyings')}
                         <input style={{
                             width: '25%',
                             border: '1px solid #aeaeae',
@@ -120,58 +93,7 @@ const SpotifyPage = () => {
                         Enter Runnings Contents
                     </Typography>
                     <form style={formStyle} onSubmit={handleSubmit}>
-                        <Box sx={{
-                            width: '50%'
-                        }}>
-                            <Input
-                                name={`header`}
-                                type={`text`}
-                                placeholder={`Header`}
-                                required
-                                sx={{
-                                    width: '90%'
-                                }}
-                            />
-                        </Box>
-                        <Box sx={{
-                            width: '50%'
-                        }}>
-                            <Input
-                                name={`header`}
-                                type={`text`}
-                                placeholder={`Header`}
-                                required
-                                sx={{
-                                    width: '90%'
-                                }}
-                            />
-                        </Box>
-                        <Box sx={{
-                            width: '50%'
-                        }}>
-                            <Input
-                                name={`header`}
-                                type={`text`}
-                                placeholder={`Header`}
-                                required
-                                sx={{
-                                    width: '90%'
-                                }}
-                            />
-                        </Box>
-                        <Box sx={{
-                            width: '50%'
-                        }}>
-                            <Input
-                                name={`header`}
-                                type={`text`}
-                                placeholder={`Header`}
-                                required
-                                sx={{
-                                    width: '90%'
-                                }}
-                            />
-                        </Box>
+                        {listSpecials(inputValues.runnings_urls, 'Runnings')}
                         <input style={{
                             width: '25%',
                             border: '1px solid #aeaeae',
@@ -198,7 +120,7 @@ const SpotifyPage = () => {
                             <Input
                                 name={`header`}
                                 type={`text`}
-                                placeholder={`Header`}
+                                placeholder={`Embed URL`}
                                 required
                                 value={inputValues.embed_url}
                                 sx={{
@@ -232,8 +154,9 @@ const SpotifyPage = () => {
                             <Input
                                 name={`header`}
                                 type={`text`}
-                                placeholder={`Header`}
+                                placeholder={`Fav User URL`}
                                 required
+                                value={inputValues.fav_user_url}
                                 sx={{
                                     width: '95%'
                                 }}
