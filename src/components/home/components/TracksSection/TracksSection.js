@@ -1,7 +1,8 @@
 import {Box, Typography} from "@mui/material";
 import CollectionCards from "./components/CollectionCards";
+import React from "react";
 
-const TracksSection = () => {
+const TracksSection = React.memo(() => {
 
 
 
@@ -60,6 +61,6 @@ const TracksSection = () => {
         </Box>
     );
 
-}
+});
 
 export default TracksSection;

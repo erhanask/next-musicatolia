@@ -1,9 +1,9 @@
 import {Typography} from "@mui/material";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {collection, getDocs} from "firebase/firestore";
 import {db} from "../../../../../config";
 
-const SpotifyEmbed = () => {
+const SpotifyEmbed = React.memo(() => {
 
     const [embed,setEmbed] = useState();
 
@@ -38,6 +38,6 @@ const SpotifyEmbed = () => {
         </>
     );
 
-}
+});
 
 export default SpotifyEmbed;

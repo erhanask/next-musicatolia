@@ -2,6 +2,7 @@ import Sidebar from "./components/Sidebar";
 import {Grid, useMediaQuery, useTheme} from "@mui/material";
 import styles from "../../../styles/Home.module.css";
 
+export const revalidate = 60;
 
 const LayoutWithSidebar = ({page}) => {
 

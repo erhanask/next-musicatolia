@@ -2,7 +2,7 @@ import {useAuthContext} from "../../../context/AuthContext";
 import AuthForm from "../components/AuthForm";
 import {Box, CircularProgress, Input, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
-import {collection, getDocs} from "firebase/firestore";
+import {updateDoc, collection, doc, getDocs} from "firebase/firestore";
 import {db} from "../../../config";
 
 // TODO : spotify setting forms will be listed in here.
@@ -10,6 +10,7 @@ const SpotifyPage = () => {
 
     const {user} = useAuthContext();
     const [inputValues, setInputValues] = useState();
+    const [formId, setFormId] = useState();
     const formStyle = {
         display: 'flex',
         width: '100%',
@@ -21,25 +22,49 @@ const SpotifyPage = () => {
         marginBlock: '15px'
     };
 
-    const handleSubmit = async () => {
-        await console.log('aaa');
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const washingtonRef = doc(db, "spotify", formId);
+
+        // Set the "capital" field of the city 'DC'
+        // await updateDoc(washingtonRef, {
+        //     capital: true
+        // });
+
+        // e.preventDefault();
+        //
+        // const data = {
+        //     'header': e.target[0].value,
+        //     'content': e.target[1].value,
+        //     'summary' : e.target[2].value
+        // }
+        //
+        //
+        // if (data.header !== null && data.content !== null && data.summary !== null) {
+        //     // Add a new document with a generated id.
+        //     const docRef = await addDoc(collection(db, "guides"), data);
+        //     setIsUpdated(true);
+        // }
     };
 
     const getSpotifyValues = async () => {
         const querySnapshot = await getDocs(collection(db, "spotify"));
-        return querySnapshot?.docs[0]?.data();
+        return {
+            data : querySnapshot?.docs[0]?.data(),
+            id: querySnapshot?.docs[0]?.id
+        }
     };
 
     const listSpecials = (urls, type) => {
         const listItems = [];
         urls.forEach((url, i) => {
             listItems.push(
-                <Box sx={{
+                <Box key={i} sx={{
                     width: '50%'
                 }}>
                     <Input
-                        key={i}
-                        name={`type${i}`}
+                        name={`${type}${i}`}
                         type={`text`}
                         placeholder={type}
                         value={url}
@@ -55,7 +80,10 @@ const SpotifyPage = () => {
     }
 
     useEffect(() => {
-        getSpotifyValues().then(r => setInputValues(r.api_urls));
+        getSpotifyValues().then(({data,id}) => {
+            setInputValues(data.api_urls)
+            setFormId(id)
+        });
     }, []);
 
     if (inputValues !== undefined) {
@@ -72,7 +100,7 @@ const SpotifyPage = () => {
                         Enter Flyings Contents
                     </Typography>
                     <form style={formStyle} onSubmit={handleSubmit}>
-                        {listSpecials(inputValues.flyings_urls, 'Flyings')}
+                        {listSpecials(inputValues.flyings_urls, 'flyings')}
                         <input style={{
                             width: '25%',
                             border: '1px solid #aeaeae',
@@ -93,7 +121,7 @@ const SpotifyPage = () => {
                         Enter Runnings Contents
                     </Typography>
                     <form style={formStyle} onSubmit={handleSubmit}>
-                        {listSpecials(inputValues.runnings_urls, 'Runnings')}
+                        {listSpecials(inputValues.runnings_urls, 'runnings')}
                         <input style={{
                             width: '25%',
                             border: '1px solid #aeaeae',

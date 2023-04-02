@@ -1,11 +1,11 @@
 import {Accordion, AccordionDetails, AccordionSummary, Box, Typography} from "@mui/material";
 import {Close, ExpandMoreSharp} from "@mui/icons-material";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {db} from "../../config";
 import {collection, getDocs} from "firebase/firestore";
 import DeleteModal from "./components/DeleteModal";
 
-const GuidePage = ({included, updated, setUpdate}) => {
+const GuidePage = React.memo(({included, updated, setUpdate}) => {
 
     const [expanded, setExpanded] = useState(false);
     const [guides, setGuides] = useState([]);
@@ -28,7 +28,9 @@ const GuidePage = ({included, updated, setUpdate}) => {
 
     useEffect(() => {
         getGuides();
-        setUpdate(false);
+        if (typeof updated !== 'undefined') {
+            setUpdate(false);
+        }
     }, [updated]);
 
 
@@ -96,6 +98,6 @@ const GuidePage = ({included, updated, setUpdate}) => {
             <DeleteModal open={{condition: open, setOpen: setOpen}} selectedId={docId} setUpdate={setUpdate}/>
         </>
     );
-}
+});
 
 export default GuidePage;

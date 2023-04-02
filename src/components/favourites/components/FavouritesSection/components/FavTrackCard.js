@@ -1,10 +1,10 @@
 import Link from "next/link";
 import {Box, Card, CardActionArea, CardContent, CircularProgress, Typography, Link as MuiLink} from "@mui/material";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {fetchHandler} from "../../../../../helpers";
 
 
-const FavTrackCard = ({playlist}) => {
+const FavTrackCard = React.memo(({playlist}) => {
 
     const [tracks, setTracks] = useState(null);
     const listItems = [];
@@ -76,7 +76,7 @@ const FavTrackCard = ({playlist}) => {
 
     return tracks !== null ? listItems : (
         <CircularProgress color={"inherit"} sx={{display: 'flex', marginInline: 'auto', marginBlock: '10px'}}/>);
-}
+});
 
 
 export default FavTrackCard;
