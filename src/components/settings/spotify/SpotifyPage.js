@@ -25,7 +25,14 @@ const SpotifyPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const washingtonRef = doc(db, "spotify", formId);
+        const formData = new FormData(e.currentTarget);
+        const data = Object.fromEntries(formData.entries());
+
+        // ...or output as an object
+        console.log(data);
+
+
+        // const washingtonRef = doc(db, "spotify", formId);
 
         // Set the "capital" field of the city 'DC'
         // await updateDoc(washingtonRef, {
@@ -146,7 +153,7 @@ const SpotifyPage = () => {
                             width: '100%'
                         }}>
                             <Input
-                                name={`header`}
+                                name={`embed_url`}
                                 type={`text`}
                                 placeholder={`Embed URL`}
                                 required
@@ -180,7 +187,7 @@ const SpotifyPage = () => {
                             width: '100%'
                         }}>
                             <Input
-                                name={`header`}
+                                name={`fav_user_url`}
                                 type={`text`}
                                 placeholder={`Fav User URL`}
                                 required
