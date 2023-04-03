@@ -22,14 +22,37 @@ const SpotifyPage = () => {
         marginBlock: '15px'
     };
 
+    // There are just 4 types data in this form.
+    // 1. flyings_urls
+    // 2. runnings_urls
+    // 3. embed_url
+    // 4. fav_user_url
+    // So data processes will be done according to this.
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
+
+        // checking key of data (flyings_urls, runnings_urls, embed_url, fav_user_url)
+        const key = Object.keys(data)[0];
+        const values = Object.values(data);
+
+        if (key.includes('flyings')) {
+            console.log(1);
+        }
+        if (key.includes('runnings')) {
+            console.log(2);
+        }
+        if (key.includes('embed')) {
+            console.log(3);
+        }
+        if (key.includes('fav_user')) {
+            console.log(4);
+        }
+
         // ...or output as an object
-        console.log(data);
 
 
         // const washingtonRef = doc(db, "spotify", formId);
