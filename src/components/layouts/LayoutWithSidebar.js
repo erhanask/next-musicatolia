@@ -20,7 +20,7 @@ const LayoutWithSidebar = ({page}) => {
                 }}>
                     <Sidebar/>
                 </Grid>
-                <Grid item md={11}>
+                <Grid item md={11} xs={12}>
                     {page}
                 </Grid>
             </Grid>

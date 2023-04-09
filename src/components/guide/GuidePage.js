@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import {db} from "../../config";
 import {collection, getDocs} from "firebase/firestore";
 import DeleteModal from "./components/DeleteModal";
+import {useAuthContext} from "../../context/AuthContext";
 
 const GuidePage = React.memo(({included, updated, setUpdate}) => {
 
@@ -11,11 +12,11 @@ const GuidePage = React.memo(({included, updated, setUpdate}) => {
     const [guides, setGuides] = useState([]);
     const [docId, setDocId] = useState(undefined);
     const [open, setOpen] = useState(false);
+    const {user} = useAuthContext();
 
     const openDeleteModal = (id) => {
         setDocId(id);
         setOpen(true);
-        return console.log('guide id =' + id);
     }
     const getGuides = async () => {
         let guideList = [];
@@ -59,20 +60,21 @@ const GuidePage = React.memo(({included, updated, setUpdate}) => {
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
-                        <Typography variant={'p'} sx={{
-                            width: '33%',
-                            flexShrink: 0,
-                            display: 'flex',
-                            alignItems: 'center',
-                        }}>
-                            <Close sx={{
-                                color: 'red',
-                                cursor: 'not-allowed'
-                            }}
-                                   onClick={() => openDeleteModal(id)}
-                            />
-                            {data.header}
-                        </Typography>
+                        {user == null ? null :
+                            <Typography variant={'p'} sx={{
+                                width: '33%',
+                                flexShrink: 0,
+                                display: 'flex',
+                                alignItems: 'center',
+                            }}>
+                                <Close sx={{
+                                    color: 'red',
+                                    cursor: 'not-allowed'
+                                }}
+                                       onClick={() => openDeleteModal(id)}
+                                />
+                                {data.header}
+                            </Typography>}
                         <Typography variant={'p'} sx={{color: 'text.secondary'}}>
                             {data.summary}
                         </Typography>

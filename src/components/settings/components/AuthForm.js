@@ -27,7 +27,7 @@ const AuthForm = () => {
         <>
             <form style={{
                 display: 'flex',
-                width: '30%',
+                width: '50%',
                 justifyContent: 'center',
                 alignIItems: 'center',
                 height: '100%',
