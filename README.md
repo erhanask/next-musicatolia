@@ -53,3 +53,7 @@ The database is a Firebase Realtime Database. The database is structured as foll
 
 For Login and Database access, you need to add the all environment variables placed inside
 .env.example to your .env file.
+
+## View On Live
+
+https://next-musicatolia.vercel.app/
